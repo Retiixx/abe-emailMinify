@@ -12,17 +12,30 @@ var configName = 'abe-emailMinify'
 
 var hooks = {
   afterPublish: function(result, postPath, abe){
-    if (true || abe.config[configName] && abe.config[configName].active){
+    var config = abe.config[configName]
+    if (config && config.active){
       const documentPath = path.join(abe.config.root, abe.config.publish.url)
       const baseName = path.basename(result.abe_meta.publish.abeUrl)
       const extName = path.extname(result.abe_meta.publish.abeUrl)
       const filePath = path.join(documentPath, baseName)
       
       readFile(filePath, 'utf8').then((data) => {
-          var crushed = crush(data)
-          const destFileName = path.basename(baseName, extName) + '.min' + extName
-          const destFilePath = path.join(path.dirname(filePath), destFileName)
-          writeFile(destFilePath, crushed.result).catch(err => console.log(err))
+        var originalData = data
+        if (config.minifyHtml) {
+          data = crush(data, config.minifyHtmlOptions).result
+        }
+        if (config.minifyCss) {
+          data = comb(data, config.minifyCssOptions).result
+        }
+          
+        const destFileName = path.basename(baseName, extName) + (config.replaceFile ?'': '.min') + extName
+        const destFilePath = path.join(path.dirname(filePath), destFileName)
+
+        if (originalData !== data){
+          writeFile(destFilePath, data).catch(err => console.log(err))
+        } else {
+          console.info('emailMinify: The data didn\'t change, file not overwritten')
+        }
       })
     }
   }
