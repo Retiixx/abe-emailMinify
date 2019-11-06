@@ -1,0 +1,28 @@
+{
+  "name": "abe-emailminify",
+  "version": "1.0.0",
+  "description": "Abe Plugin that minifies the published html with respect to email standards",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Retiixx/abe-emailMinify.git"
+  },
+  "keywords": [
+    "abe",
+    "email",
+    "minify"
+  ],
+  "author": "Clément Moulia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Retiixx/abe-emailMinify/issues"
+  },
+  "homepage": "https://github.com/Retiixx/abe-emailMinify#readme",
+  "dependencies": {
+    "email-comb": "^3.8.11",
+    "html-crush": "^1.9.10"
+  }
+}
