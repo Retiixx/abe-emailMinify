@@ -38,6 +38,16 @@ var hooks = {
         }
       })
     }
+  },
+  afterUnpublish: function(jsonPath, postPath, abe){
+      const baseName = path.basename(postPath)
+      const extName = path.extname(postPath)
+      const destFileName = path.basename(baseName, extName) + minExtension + extName
+      const destFilePath = path.join(path.dirname(postPath), destFileName)
+
+      if (fs.existsSync(destFilePath)){
+        fs.unlinkSync(destFilePath)
+      }
   }
 }
 
