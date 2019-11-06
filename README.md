@@ -1,5 +1,8 @@
 # abe-emailMinify
-In case your abe application is used to create email, it can minifies the published html and/or css, respecting email standards
+In case your abe application is used to create email, it can minifies the published html and/or css, respecting email standards.
+
+It uses [html-crush](https://www.npmjs.com/package/html-crush) and [email-comb](https://www.npmjs.com/package/email-comb).
+For ```minifyHtmlOptions``` and ```minifyCssOptions``` possiblities, see each package's documentation.
 
 # Install
 
@@ -9,14 +12,14 @@ abe install Retiixx/abe-emailMinify
 
 # Config
 
-``` json
+``` javascript
 "abe-emailMinify": {
-  "active" : <boolean> false,
-  "minifyHtml": <boolean> false,
-  "minifyHtmlOptions": <object> null,
-  "minifyCss": <boolean> false,
-  "minifyCssOptions": <object> null,
-  "replaceFile": <boolean> false
+  "active" : false, //boolean
+  "minifyHtml": false, //boolean
+  "minifyHtmlOptions": undefined, //object 
+  "minifyCss": false, //boolean
+  "minifyCssOptions": undefined, //object
+  "replaceFile": false //boolean
 }
 ```
 
