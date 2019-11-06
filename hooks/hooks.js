@@ -9,6 +9,7 @@ const readFile = util.promisify(fs.readFile)
 const writeFile = util.promisify(fs.writeFile)
 
 var configName = 'abe-emailMinify'
+var minExtension = '.min'
 
 var hooks = {
   afterPublish: function(result, postPath, abe){
@@ -28,7 +29,7 @@ var hooks = {
           data = comb(data, config.minifyCssOptions).result
         }
           
-        const destFileName = path.basename(baseName, extName) + (config.replaceFile ?'': '.min') + extName
+        const destFileName = path.basename(baseName, extName) + (config.replaceFile ?'': minExtension) + extName
         const destFilePath = path.join(path.dirname(filePath), destFileName)
 
         if (originalData !== data){
