@@ -1,12 +1,8 @@
 'use strict'
 const path = require('path')
 const fs = require('fs')
-const util = require('util')
 const {crush} = require('html-crush')
 const {comb} = require('email-comb')
-
-const readFile = util.promisify(fs.readFile)
-const writeFile = util.promisify(fs.writeFile)
 
 var configName = 'abe-emailMinify'
 var minExtension = '.min'
@@ -20,8 +16,10 @@ var hooks = {
       const extName = path.extname(result.abe_meta.publish.abeUrl)
       const filePath = path.join(documentPath, baseName)
       
-      readFile(filePath, 'utf8').then((data) => {
-        var originalData = data
+      try{
+        var originalData, data
+        originalData = data = fs.readFileSync(filePath, 'utf8')
+
         if (config.minifyHtml) {
           data = crush(data, config.minifyHtmlOptions).result
         }
@@ -33,11 +31,21 @@ var hooks = {
         const destFilePath = path.join(path.dirname(filePath), destFileName)
 
         if (originalData !== data){
-          writeFile(destFilePath, data).catch(err => console.log(err))
+          try {
+            fs.writeFileSync(destFilePath, data)
+          }
+          catch(err){
+            console.error(err)
+          }
         } else {
           console.info('emailMinify: The data didn\'t change, file not overwritten')
+          return result
         }
-      })
+      } catch (err){
+        console.error(err)
+        return result
+      }
+      return result
     }
   },
   afterUnpublish: function(jsonPath, postPath, abe){
@@ -49,6 +57,7 @@ var hooks = {
       if (fs.existsSync(destFilePath)){
         fs.unlinkSync(destFilePath)
       }
+      return jsonPath
   }
 }
 
