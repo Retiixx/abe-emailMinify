@@ -7,13 +7,14 @@ For ```minifyHtmlOptions``` and ```minifyCssOptions``` possiblities, see each pa
 # Hook Possibilities
 - afterPublish (*current branch*)
   * It reads and writes an html file (with a possible suffix)
-- [pageSaveCompile](/Retiixx/abe-emailMinify/tree/pageSaveCompile)
+- [pageSaveCompile](/../../tree/pageSaveCompile)
   * It intercepts and minifies the html content before it's written to a file
 
 # Install
 
 ``` bash 
 abe install Retiixx/abe-emailMinify#publish
+# Don't forget the branch name
 ```
 
 # Config
