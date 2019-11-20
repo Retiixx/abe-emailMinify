@@ -4,10 +4,16 @@ In case your abe application is used to create email, it can minifies the publis
 It uses [html-crush](https://www.npmjs.com/package/html-crush) and [email-comb](https://www.npmjs.com/package/email-comb).
 For ```minifyHtmlOptions``` and ```minifyCssOptions``` possiblities, see each package's documentation.
 
+# Hook Possibilities
+- afterPublish (*current branch*)
+  * It reads and writes an html file (with a possible suffix)
+- [pageSaveCompile](/Retiixx/abe-emailMinify/tree/pageSaveCompile)
+  * It intercepts and minifies the html content before it's written to a file
+
 # Install
 
 ``` bash 
-abe install Retiixx/abe-emailMinify
+abe install Retiixx/abe-emailMinify#publish
 ```
 
 # Config
