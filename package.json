@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/Retiixx/abe-emailMinify#readme",
   "dependencies": {
-    "email-comb": "3.9.10",
     "html-crush": "^1.9.10"
   }
 }

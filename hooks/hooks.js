@@ -1,6 +1,5 @@
 'use strict'
 const {crush} = require('html-crush')
-const {comb} = require('email-comb')
 
 var configName = 'abe-emailMinify'
 
@@ -13,9 +12,9 @@ var hooks = {
         if (config.minifyHtml) {
           html = crush(html, config.minifyHtmlOptions).result
         }
-        if (config.minifyCss) {
+        /* if (config.minifyCss) {
           html = comb(html, config.minifyCssOptions).result
-        }
+        } */
         
         if (originalHtml !== html){
           return html
