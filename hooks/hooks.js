@@ -2,7 +2,7 @@
 const path = require('path')
 const fs = require('fs')
 const {crush} = require('html-crush')
-const {comb} = require('email-comb')
+/* const {comb} = require('email-comb') */
 
 var configName = 'abe-emailMinify'
 var minExtension = '.min'
@@ -23,9 +23,9 @@ var hooks = {
         if (config.minifyHtml) {
           data = crush(data, config.minifyHtmlOptions).result
         }
-        if (config.minifyCss) {
+        /* if (config.minifyCss) {
           data = comb(data, config.minifyCssOptions).result
-        }
+        } */
           
         const destFileName = path.basename(baseName, extName) + (config.replaceFile ?'': minExtension) + extName
         const destFilePath = path.join(path.dirname(filePath), destFileName)
